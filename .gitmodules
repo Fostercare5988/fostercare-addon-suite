@@ -13,9 +13,6 @@
 [submodule "AutoBG"]
 	path = AutoBG
 	url = https://github.com/Fostercare5988/AutoBG.git
-[submodule "BattlegroundTargets"]
-	path = BattlegroundTargets
-	url = https://github.com/Fostercare5988/BattlegroundTargets.git
 [submodule "MikScrollingBattleText"]
 	path = MikScrollingBattleText
 	url = https://github.com/Fostercare5988/MikScrollingBattleText.git
