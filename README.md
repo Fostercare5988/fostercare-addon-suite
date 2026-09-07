@@ -59,14 +59,20 @@ These addons are designed under a **Capability-First Architecture**: each compon
 This trio provides a completely unified, zero-friction inventory and equipment lifecycle:
 
 * **Universal Bank Synchronization (`Bagnon` + `ItemRack`)**:
-  - ItemRack never inspects Blizzard's default bag or bank frames; it listens to engine events (`BANKFRAME_OPENED` and `BANKFRAME_CLOSED`).
-  - When Bagnon's unified bank (`Banknon`) opens, ItemRack activates its banking mode automatically.
+  - ItemRack never inspects Blizzard's default bag or bank frames; it listens directly to engine events (`BANKFRAME_OPENED` and `BANKFRAME_CLOSED`).
+  - When Bagnon's unified bank (`Banknon`) opens, ItemRack activates its banking mode automatically with zero frame collision.
   - Banked items belonging to ItemRack sets display a distinct **blue border** in ItemRack menus.
   - Clicking a set in ItemRack while at the bank deposits or withdraws all set items in one click, and Bagnon's unified grid updates instantly via native `BAG_UPDATE` and `PLAYERBANKSLOTS_CHANGED` dispatches.
-* **Macro vs Micro Equipment Management (`ItemRack` + `TrinketMenu`)**:
-  - `ItemRack` handles full equipment sets (PvP, Tanking, Healing, Resistance, Mount speed, GBD specialization swaps).
-  - `TrinketMenu` micro-manages individual trinket slot rotations, auto-swapping ready on-use trinkets when active ones go on cooldown.
-  - Both addons share the same **asynchronous `ITEM_LOCK_CHANGED` state machine**: if you swap sets while TrinketMenu is queueing trinkets, neither addon deadlocks the cursor or drops swaps.
+* **Smart Tooltip Telemetry (`Bagnon` + `ItemRack` + `TrinketMenu`)**:
+  - **ItemRack Set Membership**: Hovering over any item in your bags or bank via Bagnon displays which saved sets the item belongs to (`ItemRack: <Set Names>`), preventing accidental vendor sales or disenchants.
+  - **TrinketMenu Staged Queues**: Hovering over an unequipped trinket currently staged for swap displays a gold alert (`TrinketMenu: Queued (Top/Bottom Slot)`).
+* **Cooperative Non-Destructive Hooking**:
+  - Both `ItemRack` and `TrinketMenu` utilize ClassicAPI `hooksecurefunc("UseInventoryItem")` and `hooksecurefunc("UseAction")`.
+  - Action button usage is resolved directly via C++ `GetActionInfo(slot)` Item ID matching, completely eradicating tooltip parsing overhead.
+* **Cooperative Swap Scheduling & Lock Contention Shield**:
+  - If you exit combat (`PLAYER_REGEN_ENABLED`) while both an ItemRack set swap and TrinketMenu trinket queue are pending, TrinketMenu politely yields execution while ItemRack is in mid-swap (`Rack.SetSwapping`).
+  - When ItemRack finishes equipping all gear pieces, it immediately notifies TrinketMenu (`TrinketMenu.UpdateWornTrinkets()`), allowing TrinketMenu to process any remaining trinket swaps with 0ms visual latency and zero cursor deadlocks.
+  - **Pro-Tip**: In ItemRack, Alt+Click slots 13 and 14 when saving general gear sets (PvP, PvE, Tanking) to ignore trinket slots. This grants TrinketMenu 100% autonomous control over trinket rotations without set swaps overwriting your active cooldown trinkets.
 
 ### Synergy 2: The Competitive PvP Dominance Pair (`AutoBG` + `BattlegroundTargets` + `ItemRack`)
 Engineered specifically for high-tempo battleground play:
