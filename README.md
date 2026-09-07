@@ -137,48 +137,37 @@ All 7 addons adhere to the strict **Enhanced 1.12.1 Engine Architecture Standard
 
 ---
 
-## 5. Suggested Names for the Central GitHub Repository
+## 5. Installation & Deployment
 
-To collect, showcase, and distribute this modernized suite under a unified umbrella on GitHub, here are curated name proposals:
+### Mandatory Prerequisites
+This suite is engineered natively for World of Warcraft 1.12.1 running the Enhanced Client Extension Stack:
+1. [**ClassicAPI v1.14.0+**](https://github.com/brues-code/ClassicAPI) — Mandatory engine DLL.
+2. [**SuperWoW v2.2+**](https://github.com/balakethelock/SuperWoW) — Mandatory engine DLL.
+3. [**NamPower v4.6.3+**](https://github.com/Emyrk/nampower) — Mandatory engine DLL.
+4. [**UnitXP SP3 v89+**](https://codeberg.org/konaka/UnitXP_SP3) — Mandatory engine DLL.
+5. [**DXVK**](https://github.com/doitsujin/dxvk) & [**VanillaFixes**](https://github.com/hannesmann/vanillafixes) — Vulkan translation layer and modern OS framerate uncap.
 
-### Option 1: `fostercare-addon-suite` (Recommended - Personal Brand)
-* **Rationale**: Directly aligns with your GitHub username (`Fostercare5988`), establishing clear authorship, ownership, and credibility across the vanilla community.
-* **Repository URL**: `https://github.com/Fostercare5988/fostercare-addon-suite`
+### Quick Install (One-Click PowerShell)
+To clone and deploy all 7 addons directly to your World of Warcraft client:
+```powershell
+# Clone the complete suite with all submodules
+git clone --recursive https://github.com/Fostercare5988/fostercare-addon-suite.git
 
-### Option 2: `enhanced-112-addon-suite` or `enhanced-vanilla-suite` (Engine-Focused)
-* **Rationale**: Immediately signals to players and developers that this suite is purpose-built for the Enhanced 1.12.1 Client stack (ClassicAPI, SuperWoW, NamPower, DXVK).
-* **Repository URL**: `https://github.com/Fostercare5988/enhanced-112-addon-suite`
+# Deploy into your Interface\AddOns folder
+cd fostercare-addon-suite
+.\Install-Suite.ps1 -TargetDir "C:\Path\To\World of Warcraft 1.12.1\Interface\AddOns"
+```
 
-### Option 3: `apex-112-addons` (High-Performance Theme)
-* **Rationale**: "Apex" conveys peak performance, zero bloat, and enterprise-grade architectural quality. Short, punchy, and memorable.
-* **Repository URL**: `https://github.com/Fostercare5988/apex-112-addons`
-
-### Option 4: `nexus-addon-suite` (Ecosystem Theme)
-* **Rationale**: "Nexus" represents an interconnected central hub where all individual subsystems (inventory, gear, PvP, combat telemetry) interface harmoniously.
-* **Repository URL**: `https://github.com/Fostercare5988/nexus-addon-suite`
-
-### Option 5: `quantum-112-suite` (Modernization Theme)
-* **Rationale**: Highlights the quantum leap from legacy 2006 Lua scripting to modern C++ engine acceleration.
-* **Repository URL**: `https://github.com/Fostercare5988/quantum-112-suite`
+### Updating All Addons
+To pull the latest updates across all 7 repositories in one command:
+```bash
+git submodule update --remote --merge
+```
 
 ---
 
-## 6. Central Repository Distribution Strategy
+## 6. Credits & License
 
-For the central repository, you can set it up in either of two standard approaches:
-
-1. **Meta-Catalog / Portal Repository (Simplest)**:
-   - A single repository containing this comprehensive `README.md`, installation guide, and links to each individual addon repository.
-   - Includes a one-click PowerShell / batch download script that clones or updates all 7 addons simultaneously into the player's `Interface\AddOns\` folder.
-2. **Monorepo with Git Submodules**:
-   - The central repository links each individual addon as a `git submodule`:
-     ```bash
-     git submodule add https://github.com/Fostercare5988/ItemRack.git ItemRack
-     git submodule add https://github.com/Fostercare5988/Bagnon.git Bagnon
-     git submodule add https://github.com/Fostercare5988/TrinketMenu.git TrinketMenu
-     git submodule add https://github.com/Fostercare5988/AutoLazy.git AutoLazy
-     git submodule add https://github.com/Fostercare5988/AutoBG.git AutoBG
-     git submodule add https://github.com/Fostercare5988/MikScrollingBattleText.git MikScrollingBattleText
-     git submodule add https://github.com/Fostercare5988/TWThreat-Octo.git TWThreat
-     ```
-   - Allows users to clone the entire 7-addon suite in one command (`git clone --recursive ...`) while preserving each addon's independent repository and release cycle.
+- **Curator & Maintainer**: [Fostercare5988](https://github.com/Fostercare5988)
+- **Engine Contributors**: Brues (ClassicAPI), Balake (SuperWoW), Emyrk (NamPower), Konaka (UnitXP), McPewPew, Gello, Tuller
+- **License**: GNU General Public License v2 (GPL-2.0)
