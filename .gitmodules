@@ -1,0 +1,24 @@
+[submodule "ItemRack"]
+	path = ItemRack
+	url = https://github.com/Fostercare5988/ItemRack.git
+[submodule "Bagnon"]
+	path = Bagnon
+	url = https://github.com/Fostercare5988/Bagnon.git
+[submodule "TrinketMenu"]
+	path = TrinketMenu
+	url = https://github.com/Fostercare5988/TrinketMenu.git
+[submodule "AutoLazy"]
+	path = AutoLazy
+	url = https://github.com/Fostercare5988/AutoLazy.git
+[submodule "AutoBG"]
+	path = AutoBG
+	url = https://github.com/Fostercare5988/AutoBG.git
+[submodule "BattlegroundTargets"]
+	path = BattlegroundTargets
+	url = https://github.com/Fostercare5988/BattlegroundTargets.git
+[submodule "MikScrollingBattleText"]
+	path = MikScrollingBattleText
+	url = https://github.com/Fostercare5988/MikScrollingBattleText.git
+[submodule "TWThreat"]
+	path = TWThreat
+	url = https://github.com/Fostercare5988/TWThreat-Octo.git
