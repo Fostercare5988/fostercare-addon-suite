@@ -12,7 +12,6 @@ $Addons = @(
     "TrinketMenu",
     "AutoLazy",
     "AutoBG",
-    "BattlegroundTargets",
     "MikScrollingBattleText",
     "TWThreat"
 )
